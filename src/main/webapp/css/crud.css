@@ -1,0 +1,165 @@
+/* --- Reset Básico e Estilos Globais --- */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+    min-height: 100vh;
+    margin: 0;
+    color: #374151;
+    /* Remove o display:flex para o painel poder crescer */
+    padding: 2rem; /* Adiciona um respiro */
+    box-sizing: border-box;
+}
+
+/* --- Card Principal (Reaproveitado do .auth-card) --- */
+.dashboard-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 2.5rem; /* 40px */
+    width: 100%;
+    max-width: 1000px; /* Mais largo que o de login */
+    box-sizing: border-box;
+    margin: 0 auto; /* Centraliza o card horizontalmente */
+}
+
+/* --- Título (Reaproveitado do .auth-title) --- */
+.dashboard-title {
+    color: #4A4AFF;
+    font-size: 1.75rem; /* 28px */
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 2rem; /* 32px */
+    line-height: 1.3;
+    text-align: left; /* Alinha à esquerda no painel */
+}
+
+/* --- Input (Reaproveitado do .form-input) --- */
+.form-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #111827;
+}
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+/* --- Botão (Reaproveitado do .btn) --- */
+.btn {
+    display: inline-block; /* Mudei para caber lado a lado */
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+/* Botão Verde (Reaproveitado) */
+.btn-green {
+    background-color: #28a745;
+    color: white;
+    border: 2px solid #28a745;
+}
+.btn-green:hover {
+    background-color: #218838;
+    border-color: #218838;
+}
+
+/* NOVO: Botão Azul (para busca) */
+.btn-blue {
+    background-color: #007bff;
+    color: white;
+    border: 2px solid #007bff;
+}
+.btn-blue:hover {
+    background-color: #0069d9;
+    border-color: #0069d9;
+}
+
+/* --- NOVOS ESTILOS PARA O PAINEL --- */
+
+/* Barra de Ferramentas (Busca e Botão Novo) */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap; /* Para telas menores */
+    gap: 1rem;
+}
+
+.search-group {
+    display: flex;
+    gap: 0.5rem; /* Espaço entre input e botão */
+    flex-grow: 1; /* Faz a busca ocupar espaço */
+    min-width: 300px;
+}
+.search-group .form-input {
+    width: auto;
+    flex-grow: 1;
+}
+
+/* Container da Tabela (para rolagem horizontal se necessário) */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Tira espaço entre células */
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid #e5e7eb; /* Linha fina separando */
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.95rem;
+}
+
+thead th {
+    font-weight: 600;
+    color: #6b7280;
+    background-color: #f9fafb;
+}
+
+tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Botões de Ação na Tabela */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-action {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Botão de Excluir (Vermelho) */
+.btn-delete {
+    background-color: #fbebee;
+    border-color: #ef4444;
+    color: #dc2626;
+}
+.btn-delete:hover {
+    background-color: #ef4444;
+    color: white;
+}

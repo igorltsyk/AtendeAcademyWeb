@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-import model.Aluno;
-import dao.AlunoDAO;
+import model.Paciente;
+import dao.PacienteDAO;
 
 @WebServlet(name = "CadastroServlet", value = "/cadastro")
 public class CadastroServlet extends HttpServlet {
@@ -20,7 +20,7 @@ public class CadastroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //  encaminha a requisição para a página HTML
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastro.html");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastro.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -36,19 +36,19 @@ public class CadastroServlet extends HttpServlet {
         String telefone = request.getParameter("telefone");
 
 
-        Aluno novoAluno = new Aluno();
-        novoAluno.setNomealuno(nome);
-        novoAluno.setCpfaluno(cpf);
-        novoAluno.setEmail(email);
-        novoAluno.setSenha(senha);
-        novoAluno.setTelefone(telefone);
+        Paciente novoPaciente = new Paciente();
+        novoPaciente.setNomepaciente(nome);
+        novoPaciente.setCpfpaciente(cpf);
+        novoPaciente.setEmail(email);
+        novoPaciente.setSenha(senha);
+        novoPaciente.setTelefone(telefone);
 
 
 
-        AlunoDAO dao = new AlunoDAO();
+        PacienteDAO dao = new PacienteDAO();
         try {
 
-            dao.inserir(novoAluno);
+            dao.inserir(novoPaciente);
 
         } catch (Exception e) {
 

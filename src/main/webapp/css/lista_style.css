@@ -1,0 +1,86 @@
+/* Estilo para a página de lista de pacientes */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 2rem;
+    color: #374151;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 2.5rem;
+}
+
+h1 {
+    color: #4A4AFF;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+th, td {
+    padding: 0.8rem 1rem;
+    border: 1px solid #d1d5db;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+th {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.btn-edit, .btn-delete, .btn-back {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+.btn-edit {
+    background-color: #007bff;
+    color: white;
+}
+.btn-edit:hover {
+    background-color: #0069d9;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+.btn-back {
+    background-color: #6c757d;
+    color: white;
+}
+.btn-back:hover {
+    background-color: #5a6268;
+}

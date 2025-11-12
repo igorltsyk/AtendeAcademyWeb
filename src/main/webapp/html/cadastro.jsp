@@ -1,0 +1,60 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - AtendeAcademy</title>
+    
+    <!-- Importando a fonte Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cadastro.css">
+
+</head>
+<body>
+
+    <div class="auth-card">
+        <h1 class="auth-title">Registrar-se no<br>AtendeAcademy</h1>
+
+        <form action="cadastro" method="post">
+            <!-- Campo Nome Completo -->
+            <div class="form-group">
+                <input type="text" class="form-input" placeholder="Nome Completo" name="nome" required>
+            </div>
+            
+            <!-- Campo CPF -->
+            <div class="form-group">
+                <input type="text" class="form-input" placeholder="Digite seu CPF" name="cpf" required>
+            </div>
+
+            <!-- Campo E-mail -->
+            <div class="form-group">
+                <input type="email" class="form-input" placeholder="Seu Melhor E-mail" name="email" required>
+            </div>
+
+            <!-- Campo Senha -->
+            <div class="form-group">
+                <input type="password" class="form-input" placeholder="Crie uma Senha (mín. 6 caracteres)" name="senha" required>
+            </div>
+            
+            <!-- Campo Telefone -->
+            <div class="form-group">
+                <input type="tel" class="form-input" placeholder="Digite seu telefone" name="telefone" required>
+            </div>
+
+            <!-- Botão Registrar -->
+            <button type="submit" class="btn btn-green">
+                Registrar-se como Paciente
+            </button>
+        </form>
+
+        <!-- Link de Login -->
+        <div class="bottom-link">
+            <a href="login.html">Voltar para o Login</a>
+        </div>
+    </div>
+
+</body>
+</html>
