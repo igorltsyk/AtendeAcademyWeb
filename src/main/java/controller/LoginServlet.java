@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.html");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("html/login.html");
         dispatcher.forward(request, response);
     }
 

@@ -20,7 +20,7 @@ public class CadastroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //  encaminha a requisição para a página HTML
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastro.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/html/cadastro.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -31,6 +31,7 @@ public class CadastroServlet extends HttpServlet {
 
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
+        int idade = Integer.parseInt(request.getParameter("idade"));
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         String telefone = request.getParameter("telefone");
@@ -39,6 +40,7 @@ public class CadastroServlet extends HttpServlet {
         Paciente novoPaciente = new Paciente();
         novoPaciente.setNomepaciente(nome);
         novoPaciente.setCpfpaciente(cpf);
+        novoPaciente.setIdade(idade);
         novoPaciente.setEmail(email);
         novoPaciente.setSenha(senha);
         novoPaciente.setTelefone(telefone);
@@ -52,10 +54,10 @@ public class CadastroServlet extends HttpServlet {
 
         } catch (Exception e) {
 
-            throw new ServletException("Erro ao inserir aluno no banco de dados", e);
+            throw new ServletException("Erro ao inserir paciente no banco de dados", e);
         }
 
 
-        response.sendRedirect("login.html");
+        response.sendRedirect(request.getContextPath()+"/html/crud.jsp");
     }
 }

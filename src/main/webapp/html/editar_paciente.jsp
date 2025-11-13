@@ -10,7 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/cadastro.css">
+
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cadastro.css">
 </head>
 <body>
 
@@ -22,8 +24,9 @@
         if (p != null) {
     %>
 
-    <form action="controlePaciente" method="POST">
-        <!-- ID oculto -->
+
+    <form action="${pageContext.request.contextPath}/pacienteServlet" method="POST">
+
         <input type="hidden" name="idpaciente" value="<% out.print(p.getIdpaciente()); %>">
 
         <div class="form-group">
@@ -56,7 +59,10 @@
             <input type="tel" class="form-input" name="telefone" value="<% out.print(p.getTelefone()); %>" required>
         </div>
 
-        <button type="submit" name="op" value="EFETIVAR_ATUALIZACAO" class="btn btn-green">
+
+        <input type="hidden" name="action" value="salvarEdicao">
+
+        <button type="submit" class="btn btn-green">
             Salvar Alterações
         </button>
     </form>
@@ -69,8 +75,9 @@
         }
     %>
 
+
     <div class="bottom-link">
-        <a href="controlePaciente?op=CONSULTAR_TODOS">Voltar para a Lista</a>
+        <a href="${pageContext.request.contextPath}/pacienteServlet?action=listarTodos">Voltar para a Lista</a>
     </div>
 </div>
 

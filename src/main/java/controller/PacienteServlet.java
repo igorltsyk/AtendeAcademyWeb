@@ -1,130 +1,108 @@
 package controller;
 
 import dao.PacienteDAO;
-import model.Paciente;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Paciente;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "ControlePacienteServlet", urlPatterns = {"/controlePaciente"})
-public class        PacienteServlet extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+@WebServlet(name = "PacienteServlet", value = "/pacienteServlet")
+public class PacienteServlet extends HttpServlet {
 
-        String op = request.getParameter("op");
-        PacienteDAO dao = new PacienteDAO();
-        String paginaDestino = "";
-        String mensagem = "";
+    private PacienteDAO dao;
 
-        try {
-            if (op.equals("CADASTRAR")) {
-                String nome = request.getParameter("nome");
-                String cpf = request.getParameter("cpf");
-                String email = request.getParameter("email");
-                String senha = request.getParameter("senha");
-                String telefone = request.getParameter("telefone");
-                int idade = Integer.parseInt(request.getParameter("idade")); // Adicionado
 
-                Paciente p = new Paciente();
-                p.setNomepaciente(nome);
-                p.setCpfpaciente(cpf);
-                p.setEmail(email);
-                p.setSenha(senha);
-                p.setTelefone(telefone);
-                p.setIdade(idade); // Adicionado
+    @Override
+    public void init() throws ServletException {
+        this.dao = new PacienteDAO();
+    }
 
-                dao.inserir(p);
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
 
-                mensagem = "Paciente cadastrado com sucesso!";
-                paginaDestino = "resultado_paciente.jsp";
+        // Se 'action' for nulo ou "listarTodos", executa a listagem
+        if (action == null || action.equals("listarTodos")) {
+            listarTodos(request, response);
+        } else if (action.equals("buscar")) {
+            buscarPaciente(request, response);
+        } else if (action.equals("carregarParaEditar")) {
+            carregarParaEditar(request, response);
+        } else {
+            listarTodos(request, response); // Ação padrão
+        }
+    }
 
-            } else if (op.equals("CONSULTAR_TODOS")) {
-                List<Paciente> listaPacientes = dao.consultarTodos();
-                request.setAttribute("listaPacientes", listaPacientes);
-                paginaDestino = "lista_pacientes.jsp";
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
 
-            } else if (op.equals("DELETAR")) {
-                int id = Integer.parseInt(request.getParameter("idpaciente"));
-                dao.deletar(id);
-
-                // Recarrega a lista após deletar
-                List<Paciente> listaPacientes = dao.consultarTodos();
-                request.setAttribute("listaPacientes", listaPacientes);
-                paginaDestino = "lista_pacientes.jsp";
-
-            } else if (op.equals("ATUALIZAR")) {
-                // Esta operação busca o paciente e encaminha para a página de edição
-                int id = Integer.parseInt(request.getParameter("idpaciente"));
-                Paciente p = dao.consultarPorId(id);
-                request.setAttribute("paciente", p);
-                paginaDestino = "editar_paciente.jsp";
-
-            } else if (op.equals("EFETIVAR_ATUALIZACAO")) {
-                int id = Integer.parseInt(request.getParameter("idpaciente"));
-                String nome = request.getParameter("nome");
-                String cpf = request.getParameter("cpf");
-                String email = request.getParameter("email");
-                String senha = request.getParameter("senha");
-                String telefone = request.getParameter("telefone");
-                int idade = Integer.parseInt(request.getParameter("idade"));
-
-                Paciente p = new Paciente();
-                p.setIdpaciente(id);
-                p.setNomepaciente(nome);
-                p.setCpfpaciente(cpf);
-                p.setEmail(email);
-                p.setSenha(senha);
-                p.setTelefone(telefone);
-                p.setIdade(idade);
-
-                dao.atualizar(p);
-
-                mensagem = "Paciente atualizado com sucesso!";
-                paginaDestino = "resultado_paciente.jsp";
-
-            } else if (op.equals("CONSULTAR_POR_ID")) {
-                int id = Integer.parseInt(request.getParameter("idpaciente_busca"));
-                Paciente p = dao.consultarPorId(id);
-                request.setAttribute("paciente", p);
-                paginaDestino = "resultado_busca_paciente.jsp";
-            }
-
-        } catch (Exception e) {
-            System.out.println("Erro no Servlet: " + e.getMessage());
-            e.printStackTrace();
-            mensagem = "Erro: " + e.getMessage();
-            paginaDestino = "erro_paciente.jsp";
+        if (action == null) {
+            response.sendRedirect(request.getContextPath() + "/pacienteServlet?action=listarTodos");
+            return;
         }
 
-        request.setAttribute("mensagem", mensagem);
-        RequestDispatcher dispatcher = request.getRequestDispatcher(paginaDestino);
+        if (action.equals("excluir")) {
+            excluirPaciente(request, response);
+        } else if (action.equals("salvarEdicao")) {
+            salvarEdicao(request, response);
+        }
+    }
+
+    // Método para "Consultar Todos" (GET)
+    private void listarTodos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Paciente> lista = dao.consultarTodos();
+        request.setAttribute("listaDePacientes", lista);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/html/crud.jsp");
         dispatcher.forward(request, response);
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    // Método para "Buscar" (GET)
+    private void buscarPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String termoBusca = request.getParameter("termoBusca");
+        List<Paciente> lista = dao.buscar(termoBusca);
+        request.setAttribute("listaDePacientes", lista);
+        request.setAttribute("termoBusca", termoBusca); // Devolve o termo para o input
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/html/crud.jsp");
+        dispatcher.forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    // Método para "Carregar Para Editar" (GET)
+    private void carregarParaEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Paciente paciente = dao.consultarPorId(id);
+        request.setAttribute("paciente", paciente);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/html/editar_paciente.jsp");
+        dispatcher.forward(request, response);
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Servlet para controlar o CRUD de Pacientes";
+    // Método para "Excluir" (POST)
+    private void excluirPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        dao.deletar(id);
+        response.sendRedirect(request.getContextPath() + "/pacienteServlet?action=listarTodos");
+    }
+
+    // Método para "Salvar Edição" (POST) - Vem da página editar_paciente.jsp
+    private void salvarEdicao(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("idpaciente"));
+        String nome = request.getParameter("nome");
+        String cpf = request.getParameter("cpf");
+        int idade = Integer.parseInt(request.getParameter("idade"));
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String telefone = request.getParameter("telefone");
+
+        Paciente paciente = new Paciente(id, nome, cpf, idade, telefone, email, senha);
+        dao.atualizar(paciente);
+
+        response.sendRedirect(request.getContextPath() + "/pacienteServlet?action=listarTodos");
     }
 }
