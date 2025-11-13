@@ -121,10 +121,10 @@ public class AlunoDAO {
             comando.setString(1, email);
             comando.setString(2, senha);
 
-            // Executa a consulta
+
             ResultSet rs = comando.executeQuery();
 
-            // rs.next() será 'true' se o banco encontrou UM resultado
+
             if (rs.next()) {
                 // Encontrou! Criamos o objeto Aluno com os dados do banco
                 Aluno aluno = new Aluno();
@@ -143,8 +143,7 @@ public class AlunoDAO {
             // Você pode tratar o erro aqui
         }
 
-        // Se não entrou no 'if' ou se deu erro,
-        // significa que o login é inválido.
-        return null; // Retorna null (FALHA NO LOGIN)
+
+        return null; // Retorna null falha o login
     }
 }

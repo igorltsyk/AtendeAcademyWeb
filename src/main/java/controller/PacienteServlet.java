@@ -28,7 +28,7 @@ public class PacienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        // Se 'action' for nulo ou "listarTodos", executa a listagem
+
         if (action == null || action.equals("listarTodos")) {
             listarTodos(request, response);
         } else if (action.equals("buscar")) {
@@ -36,7 +36,7 @@ public class PacienteServlet extends HttpServlet {
         } else if (action.equals("carregarParaEditar")) {
             carregarParaEditar(request, response);
         } else {
-            listarTodos(request, response); // Ação padrão
+            listarTodos(request, response);
         }
     }
 
@@ -56,25 +56,28 @@ public class PacienteServlet extends HttpServlet {
         }
     }
 
-    // Método para "Consultar Todos" (GET)
+
     private void listarTodos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /**
+         * Método para listar todos os pacientes do banco
+         */
         List<Paciente> lista = dao.consultarTodos();
-        request.setAttribute("listaDePacientes", lista);
+        request.setAttribute("listaDePacientes", lista); //empacota os dados na requisição
         RequestDispatcher dispatcher = request.getRequestDispatcher("/html/crud.jsp");
-        dispatcher.forward(request, response);
+        dispatcher.forward(request, response); // nvia a requisição para o jsp
     }
 
-    // Método para "Buscar" (GET)
+
     private void buscarPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String termoBusca = request.getParameter("termoBusca");
         List<Paciente> lista = dao.buscar(termoBusca);
         request.setAttribute("listaDePacientes", lista);
-        request.setAttribute("termoBusca", termoBusca); // Devolve o termo para o input
+        request.setAttribute("termoBusca", termoBusca);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/html/crud.jsp");
         dispatcher.forward(request, response);
     }
 
-    // Método para "Carregar Para Editar" (GET)
+
     private void carregarParaEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Paciente paciente = dao.consultarPorId(id);
@@ -83,14 +86,14 @@ public class PacienteServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    // Método para "Excluir" (POST)
+
     private void excluirPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         dao.deletar(id);
         response.sendRedirect(request.getContextPath() + "/pacienteServlet?action=listarTodos");
     }
 
-    // Método para "Salvar Edição" (POST) - Vem da página editar_paciente.jsp
+
     private void salvarEdicao(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("idpaciente"));
         String nome = request.getParameter("nome");
