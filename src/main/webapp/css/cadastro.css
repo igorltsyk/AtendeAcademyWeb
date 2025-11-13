@@ -1,7 +1,7 @@
 
 
 
-    /* --- Reset Básico e Estilos Globais --- */
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f3f4f6;
@@ -13,7 +13,7 @@ body {
     color: #374151;
 }
 
-/* --- O Card Principal --- */
+
 .auth-card {
     background-color: white;
     border-radius: 12px;
@@ -24,7 +24,7 @@ body {
     box-sizing: border-box;
 }
 
-/* --- Título (Acesse o...) --- */
+
 .auth-title {
     color: #4A4AFF;
     font-size: 1.75rem; /* 28px */
@@ -36,9 +36,7 @@ body {
 }
 
 /* --- Formulário ---
-   Na tela de cadastro, não temos <label>,
-   apenas placeholders, então o .form-group
-   terá um espaço menor.
+
 */
 .form-group {
     margin-bottom: 1rem; /* 16px (um pouco menos que o login) */
@@ -88,7 +86,7 @@ body {
     border-color: #218838;
 }
 
-/* --- Link Inferior --- */
+
 .bottom-link {
     text-align: center;
     margin-top: 1.5rem; /* 24px */

@@ -30,6 +30,8 @@ public class PacienteDAO {
 
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Erro ao inserir paciente: " + e.getMessage());
+
+            throw new RuntimeException("Erro de banco de dados ao inserir paciente", e);
         }
     }
 
@@ -87,6 +89,35 @@ public class PacienteDAO {
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Erro ao deletar paciente: " + e.getMessage());
         }
+    }
+    public List<Paciente> buscar(String termoBusca) {
+        List<Paciente> lista = new ArrayList<>();
+        String sql = "SELECT * FROM paciente WHERE nome_paciente LIKE ? OR cpf_paciente LIKE ?";
+
+        try (Connection conn = FabricaConexao.getConexao();
+             PreparedStatement comando = conn.prepareStatement(sql)) {
+
+            String termoLike = "%" + termoBusca + "%";
+            comando.setString(1, termoLike);
+            comando.setString(2, termoLike);
+
+            ResultSet rs = comando.executeQuery();
+
+            while (rs.next()) {
+                Paciente p = new Paciente();
+                p.setIdpaciente(rs.getInt("id_paciente"));
+                p.setNomepaciente(rs.getString("nome_paciente"));
+                p.setCpfpaciente(rs.getString("cpf_paciente"));
+                p.setIdade(rs.getInt("idade"));
+                p.setTelefone(rs.getString("telefone"));
+                p.setEmail(rs.getString("email"));
+                p.setSenha(rs.getString("senha"));
+                lista.add(p);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            System.out.println("Erro ao buscar pacientes: " + e.getMessage());
+        }
+        return lista;
     }
 
     public Paciente consultarPorId(Integer idpaciente) {
