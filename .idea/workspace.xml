@@ -9,7 +9,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="01d87584-88ef-4605-ad8f-691f62610e44" name="Changes" comment="finalizado" />
+=======
+    <list default="true" id="01d87584-88ef-4605-ad8f-691f62610e44" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CadastroServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CadastroServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PacienteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PacienteServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PacienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PacienteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mysql-connector-j-9.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/cadastro.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/cadastro.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/crud.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/crud.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/lista_style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/agenda.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/cadastro.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/html/cadastro.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/crud.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/html/crud.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/editar_paciente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/html/editar_paciente.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/gerenciar_pacientes.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/home.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/listar_pacientes.jsp" beforeDir="false" />
+    </list>
+>>>>>>> 027322adab79dfc8b2f53dcb16d0f6c8627bc1f4
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +54,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
@@ -43,6 +67,20 @@
     &quot;accountId&quot;: &quot;8aedf3d9-314c-48c9-94c8-86630c559e52&quot;
   }
 }</component>
+=======
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "igorltsyk"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/igorltsyk/AtendeAcademyWeb.git",
+    "accountId": "8aedf3d9-314c-48c9-94c8-86630c559e52"
+  }
+}]]></component>
+>>>>>>> 027322adab79dfc8b2f53dcb16d0f6c8627bc1f4
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -73,6 +111,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
@@ -96,6 +135,31 @@
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 10.1.481.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/igors/Desktop/Projetos/Estudos/Faculdade/AtendeAcademyWeb/src/main/webapp/WEB-INF/lib",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> 027322adab79dfc8b2f53dcb16d0f6c8627bc1f4
   }
 }</component>
   <component name="RecentsManager">
@@ -225,8 +289,12 @@
       <updated>1762389523135</updated>
       <workItem from="1762389524939" duration="8385000" />
       <workItem from="1762471009206" duration="34476000" />
+<<<<<<< HEAD
       <workItem from="1763001751514" duration="7578000" />
       <workItem from="1763057106145" duration="5078000" />
+=======
+      <workItem from="1763001751514" duration="7297000" />
+>>>>>>> 027322adab79dfc8b2f53dcb16d0f6c8627bc1f4
     </task>
     <task id="LOCAL-00001" summary="finalizado">
       <option name="closed" value="true" />
