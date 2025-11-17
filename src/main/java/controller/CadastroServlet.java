@@ -35,7 +35,8 @@ public class CadastroServlet extends HttpServlet {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         String telefone = request.getParameter("telefone");
-
+        String genero = request.getParameter("genero");
+        String estadocivil = request.getParameter("estadocivil");
 
         Paciente novoPaciente = new Paciente();
         novoPaciente.setNomepaciente(nome);
@@ -44,6 +45,8 @@ public class CadastroServlet extends HttpServlet {
         novoPaciente.setEmail(email);
         novoPaciente.setSenha(senha);
         novoPaciente.setTelefone(telefone);
+        novoPaciente.setGenero(genero);
+        novoPaciente.setEstadocivil(estadocivil);
 
 
 

@@ -54,7 +54,8 @@
                     <td>${paciente.email}</td>
 
                     <td class="action-buttons">
-                        <form action="${pageContext.request.contextPath}/pacienteServlet" method="POST" style="display:inline;">
+                        <form action="${pageContext.request.contextPath}/pacienteServlet" method="POST" style="display:inline;"
+                              onsubmit="return confirm('Tem certeza que deseja excluir este paciente?');">
                             <input type="hidden" name="action" value="excluir">
                             <input type="hidden" name="id" value="${paciente.idpaciente}">
                             <button type="submit" class="btn-action btn-delete">Excluir</button>

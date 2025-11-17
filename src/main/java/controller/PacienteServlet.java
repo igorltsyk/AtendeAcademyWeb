@@ -19,6 +19,7 @@ public class PacienteServlet extends HttpServlet {
     private PacienteDAO dao;
 
 
+
     @Override
     public void init() throws ServletException {
         this.dao = new PacienteDAO();
@@ -66,10 +67,14 @@ public class PacienteServlet extends HttpServlet {
 
 
     private void buscarPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String termoBusca = request.getParameter("termoBusca");
-        List<Paciente> lista = dao.buscar(termoBusca);
+        String termo = request.getParameter("termoBusca");
+        Paciente pacienteFiltro = new Paciente();
+        pacienteFiltro.setNomepaciente(termo);
+        pacienteFiltro.setCpfpaciente(termo);
+
+        List<Paciente> lista = dao.buscar(pacienteFiltro);
         request.setAttribute("listaDePacientes", lista);
-        request.setAttribute("termoBusca", termoBusca); // Devolve o termo para o input
+        request.setAttribute("termoBusca", pacienteFiltro); // Devolve o termo para o input
         RequestDispatcher dispatcher = request.getRequestDispatcher("/html/crud.jsp");
         dispatcher.forward(request, response);
     }
@@ -77,7 +82,9 @@ public class PacienteServlet extends HttpServlet {
 
     private void carregarParaEditar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Paciente paciente = dao.consultarPorId(id);
+        Paciente paciente = new Paciente();
+        paciente.setIdpaciente(id);
+        dao.consultarPorId(paciente);
         request.setAttribute("paciente", paciente);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/html/editar_paciente.jsp");
         dispatcher.forward(request, response);
@@ -86,7 +93,9 @@ public class PacienteServlet extends HttpServlet {
 
     private void excluirPaciente(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        dao.deletar(id);
+        Paciente paciente = new Paciente();
+        paciente.setIdpaciente(id);
+        dao.deletar(paciente);
         response.sendRedirect(request.getContextPath() + "/pacienteServlet?action=listarTodos");
     }
 
@@ -99,8 +108,10 @@ public class PacienteServlet extends HttpServlet {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         String telefone = request.getParameter("telefone");
+        String estadocivil = request.getParameter("estadocivil");
+        String genero = request.getParameter("genero");
 
-        Paciente paciente = new Paciente(id, nome, cpf, idade, telefone, email, senha);
+        Paciente paciente = new Paciente(id, nome, cpf, idade, telefone, email, senha, estadocivil, genero);
         dao.atualizar(paciente);
 
         response.sendRedirect(request.getContextPath() + "/pacienteServlet?action=listarTodos");

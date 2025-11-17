@@ -10,7 +10,7 @@ import conexao.FabricaConexao;
 public class PacienteDAO {
 
     public void inserir(Paciente paciente) {
-        String sql = "INSERT INTO paciente (nome_paciente, cpf_paciente, idade, telefone, email, senha) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO paciente (nome_paciente, cpf_paciente, idade, telefone, email, senha, estado_civil, genero) VALUES (?, ?, ?, ?, ?, ?,?,?)";
         try (Connection conn = FabricaConexao.getConexao();
              PreparedStatement comando = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -20,6 +20,8 @@ public class PacienteDAO {
             comando.setString(4, paciente.getTelefone());
             comando.setString(5, paciente.getEmail());
             comando.setString(6, paciente.getSenha());
+            comando.setString(7, paciente.getEstadocivil());
+            comando.setString(8, paciente.getGenero());
 
             comando.executeUpdate();
 
@@ -52,6 +54,8 @@ public class PacienteDAO {
                 p.setTelefone(rs.getString("telefone"));
                 p.setEmail(rs.getString("email"));
                 p.setSenha(rs.getString("senha"));
+                p.setEstadocivil(rs.getString("estado_civil"));
+                p.setGenero(rs.getString("genero"));
                 lista.add(p);
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -61,7 +65,7 @@ public class PacienteDAO {
     }
 
     public void atualizar(Paciente paciente) {
-        String sql = "UPDATE paciente SET nome_paciente=?, cpf_paciente=?, idade=?, telefone=?, email=?, senha=? WHERE id_paciente=?";
+        String sql = "UPDATE paciente SET nome_paciente=?, cpf_paciente=?, idade=?, telefone=?, email=?, senha=?, estado_civil=?, genero=? WHERE id_paciente=?";
         try (Connection conn = FabricaConexao.getConexao();
              PreparedStatement comando = conn.prepareStatement(sql)) {
 
@@ -72,6 +76,8 @@ public class PacienteDAO {
             comando.setString(5, paciente.getEmail());
             comando.setString(6, paciente.getSenha());
             comando.setInt(7, paciente.getIdpaciente());
+            comando.setString(8, paciente.getEstadocivil());
+            comando.setString(9, paciente.getGenero());
 
             comando.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
@@ -79,25 +85,27 @@ public class PacienteDAO {
         }
     }
 
-    public void deletar(int idpaciente) {
+    //public void deletar(int idpaciente) {
+    public void deletar(Paciente paciente) {
         String sql = "DELETE FROM paciente WHERE id_paciente=?";
         try (Connection conn = FabricaConexao.getConexao();
              PreparedStatement comando = conn.prepareStatement(sql)) {
 
-            comando.setInt(1, idpaciente);
+            //comando.setInt(1, idpaciente);
+            comando.setInt(1, paciente.getIdpaciente());
             comando.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Erro ao deletar paciente: " + e.getMessage());
         }
     }
-    public List<Paciente> buscar(String termoBusca) {
+    public List<Paciente> buscar(Paciente pacienteBusca) {
         List<Paciente> lista = new ArrayList<>();
         String sql = "SELECT * FROM paciente WHERE nome_paciente LIKE ? OR cpf_paciente LIKE ?";
 
         try (Connection conn = FabricaConexao.getConexao();
              PreparedStatement comando = conn.prepareStatement(sql)) {
 
-            String termoLike = "%" + termoBusca + "%";
+            String termoLike = "%" + pacienteBusca.getNomepaciente() + "%";
             comando.setString(1, termoLike);
             comando.setString(2, termoLike);
 
@@ -120,15 +128,14 @@ public class PacienteDAO {
         return lista;
     }
 
-    public Paciente consultarPorId(Integer idpaciente) {
+    public Paciente consultarPorId(Paciente paciente) {
         String sql = "SELECT * FROM paciente WHERE id_paciente = ?";
         try (Connection conn = FabricaConexao.getConexao();
              PreparedStatement comando = conn.prepareStatement(sql)) {
 
-            comando.setInt(1, idpaciente);
+            comando.setInt(1, paciente.getIdpaciente());
             ResultSet rs = comando.executeQuery();
             if (rs.next()) {
-                Paciente paciente = new Paciente();
                 paciente.setIdpaciente(rs.getInt("id_paciente"));
                 paciente.setNomepaciente(rs.getString("nome_paciente"));
                 paciente.setCpfpaciente(rs.getString("cpf_paciente"));
@@ -136,6 +143,8 @@ public class PacienteDAO {
                 paciente.setTelefone(rs.getString("telefone"));
                 paciente.setEmail(rs.getString("email"));
                 paciente.setSenha(rs.getString("senha"));
+                paciente.setEstadocivil(rs.getString("estado_civil"));
+                paciente.setGenero(rs.getString("genero"));
                 return paciente;
             }
         } catch (SQLException | ClassNotFoundException e) {

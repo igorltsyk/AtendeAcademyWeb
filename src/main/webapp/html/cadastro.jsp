@@ -43,9 +43,35 @@
             <input type="tel" class="form-input" placeholder="Digite seu telefone" name="telefone" required>
         </div>
 
+        <div class="form-group">
+            <label class="form-label">Gênero</label>
+            <div class="radio-group">
+                <input type="radio" id="genMasc" name="genero" value="Masculino">
+                <label for="genMasc">Masculino</label>
+
+                <input type="radio" id="genFem" name="genero" value="Feminino">
+                <label for="genFem">Feminino</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Estado Civil</label>
+            <div class="radio-group">
+                <input type="radio" id="estSol" name="estadocivil" value="Solteiro">
+                <label for="estSol">Solteiro(a)</label>
+
+                <input type="radio" id="estCas" name="estadocivil" value="Casado">
+                <label for="estCas">Casado(a)</label>
+            </div>
+        </div>
+
+
+
         <button type="submit" class="btn btn-green">
             Registrar-se como Paciente
         </button>
+
+
     </form>
 
 </div>

@@ -59,6 +59,36 @@
             <input type="tel" class="form-input" name="telefone" value="<% out.print(p.getTelefone()); %>" required>
         </div>
 
+        <div class="form-group">
+            <label class="form-label">Gênero</label>
+            <div class="radio-group">
+                <input type="radio" id="genMasc" name="genero" value="Masculino"
+                <%-- REMOVIDO o .name() e ajustada a comparação --%>
+                    <% if (p.getGenero() != null && p.getGenero().equals("Masculino")) out.print("checked"); %>>
+                <label for="genMasc">Masculino</label>
+
+                <input type="radio" id="genFem" name="genero" value="Feminino"
+                    <% if (p.getGenero() != null && p.getGenero().equals("Feminino")) out.print("checked"); %>>
+                <label for="genFem">Feminino</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Estado Civil</label>
+            <div class="radio-group">
+                <%-- Faça o mesmo para Estado Civil --%>
+                <input type="radio" id="estSol" name="estadoCivil" value="Solteiro"
+                    <% if (p.getEstadocivil() != null && p.getEstadocivil().equals("Solteiro")) out.print("checked"); %>>
+                <label for="estSol">Solteiro(a)</label>
+
+                <input type="radio" id="estCas" name="estadoCivil" value="Casado"
+                    <% if (p.getEstadocivil() != null && p.getEstadocivil().equals("Casado")) out.print("checked"); %>>
+                <label for="estCas">Casado(a)</label>
+            </div>
+        </div>
+
+
+
 
         <input type="hidden" name="action" value="salvarEdicao">
 
