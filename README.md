@@ -62,7 +62,8 @@ CREATE TABLE paciente (
 );
 ```
 
-Nota: Certifique-se de configurar a classe conexao.FabricaConexao com seu usuário e senha do banco de dados local.
+> [!NOTE]
+> Certifique-se de configurar a classe conexao.FabricaConexao com seu usuário e senha do banco de dados local.
 
 
 Como Executar
