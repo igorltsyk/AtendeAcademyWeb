@@ -73,7 +73,11 @@ Você pode rodar a aplicação através da sua IDE.
 
 Clone o repositório:
 
-```<git clone [https://github.com/seu-usuario/AtendeAcademyWeb.git](https://github.com/seu-usuario/AtendeAcademyWeb.git)>```
+
+
+
+`git clone https://github.com/igorltsyk/AtendeAcademyWeb.git(https://github.com/seu-usuario/AtendeAcademyWeb.git`
+
 
 Importe o projeto:
 
