@@ -65,5 +65,37 @@ CREATE TABLE paciente (
 Nota: Certifique-se de configurar a classe conexao.FabricaConexao com seu usuário e senha do banco de dados local.
 
 
+Como Executar
+
+Você pode rodar a aplicação através da sua IDE.
+
+
+Clone o repositório:
+
+git clone [https://github.com/seu-usuario/AtendeAcademyWeb.git](https://github.com/seu-usuario/AtendeAcademyWeb.git)
+
+Importe o projeto:
+
+Abra o IntelliJ IDEA e selecione File > Open.
+
+Navegue até a pasta do projeto clonado.
+
+Configure o Servidor (Tomcat):
+
+Vá em Run > Edit Configurations.
+
+Clique no + e selecione Tomcat Server > Local.
+
+Na aba Deployment, clique no + e selecione Artifact.
+
+Escolha AtendeAcademyWeb:war exploded.
+
+Execute:
+
+Clique no botão Run (▶️) ou Debug.
+
+Acesse no navegador: http://localhost:8080/AtendeAcademyWeb_war_exploded
+
+
 
 
