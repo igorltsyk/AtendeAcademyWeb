@@ -32,6 +32,37 @@ O código foi organizado seguindo boas práticas de Orientação a Objetos:
 * **`controller`**: Servlets que gerenciam as requisições HTTP e a lógica de navegação (`PacienteServlet`, `CadastroServlet`).
 * **`view` (`webapp`)**: Páginas `.jsp` e arquivos de estilo `.css`.
 
+## 🧩 Estrutura Geral de Pastas
+
+```text 
+AtendeAcademyWeb
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   ├──  conexao
+│   │   │   │   └── FabricaConexao.java  # cria a conexão com o banco de dados
+│   │   │   ├── controller  # (Controladores) Recebem as requisições
+│   │   │   │   ├── CadastroServlet.java
+│   │   │   │   └── PacienteServlet.java
+│   │   │   ├── dao         # (Data Access Object) Comunicação com o Banco
+│   │   │   │   ├── AlunoDAO.java
+│   │   │   │   └── PacienteDAO.java
+│   │   │   └── model       # (Modelo) Classes POJO
+│   │   │       ├── Aluno.java
+│   │   │       └── Paciente.java
+│   │   └── webapp          # (Visualização) Front-end
+│   │       ├── css
+│   │       │   ├── cadastro.css
+│   │       │   └── crud.css
+│   │       ├── html
+│   │       │   ├── cadastro.jsp
+│   │       │   └── crud.jsp
+│   │       └── WEB-INF
+│   │           └── web.xml
+└── pom.xml                 # Dependências do Maven
+
+```
+
 ## Pré-requisitos
 
 Para rodar este projeto, você precisará de:
