@@ -73,21 +73,17 @@ Você pode rodar a aplicação através da sua IDE.
 
 Clone o repositório:
 
-
-
-
-`git clone https://github.com/igorltsyk/AtendeAcademyWeb.git(https://github.com/seu-usuario/AtendeAcademyWeb.git`
-
+`git clone https://github.com/igorltsyk/AtendeAcademyWeb.git`
 
 Importe o projeto:
 
-Abra o IntelliJ IDEA e selecione File > Open.
+`Abra o IntelliJ IDEA e selecione File > Open.`
 
 Navegue até a pasta do projeto clonado.
 
 Configure o Servidor (Tomcat):
 
-Vá em Run > Edit Configurations.
+`Vá em Run > Edit Configurations.`
 
 Clique no + e selecione Tomcat Server > Local.
 
@@ -97,7 +93,7 @@ Escolha AtendeAcademyWeb:war exploded.
 
 Execute:
 
-Clique no botão Run (▶️) ou Debug.
+`Clique no botão Run (▶️) ou Debug.`
 
 Acesse no navegador: http://localhost:8080/AtendeAcademyWeb_war_exploded
 
