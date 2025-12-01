@@ -62,7 +62,7 @@ CREATE TABLE paciente (
 );
 ```
 
-> [!NOTE]
+> [!Nota]
 > Certifique-se de configurar a classe conexao.FabricaConexao com seu usuário e senha do banco de dados local.
 
 
