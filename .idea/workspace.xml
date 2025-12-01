@@ -10,15 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01d87584-88ef-4605-ad8f-691f62610e44" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/paciente.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CadastroServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CadastroServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PacienteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PacienteServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PacienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PacienteDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Paciente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/cadastro.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/html/cadastro.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/crud.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/html/crud.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/editar_paciente.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/html/editar_paciente.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,19 +81,21 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Tomcat 10.1.481.executor": "Run",
+    "Tomcat Server.Tomcat 10.1.481.executor": "Coverage",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/igors/Desktop/Projetos/Estudos/Faculdade/AtendeAcademyWeb/src/main/webapp/WEB-INF/lib",
+    "last_opened_file_path": "C:/Users/igors/Desktop/Projetos/Estudos/Faculdade/PROJETO FINAL 3º SEMESTRE/AtendeAcademyWeb",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -124,7 +118,6 @@
           <value>
             <map>
               <entry key="Tomcat 10.1.481" value="STOPPED" />
-              <entry key="crud.jsp" value="STOPPED" />
             </map>
           </value>
         </entry>
@@ -238,10 +231,14 @@
       <workItem from="1762389524939" duration="8385000" />
       <workItem from="1762471009206" duration="34476000" />
       <workItem from="1763001751514" duration="7297000" />
+      <workItem from="1764549728712" duration="857000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AtendeAcademyWeb$Tomcat_10_1_481.ic" NAME="Tomcat 10.1.481 Coverage Results" MODIFIED="1764550346833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

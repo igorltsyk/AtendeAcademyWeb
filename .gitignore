@@ -1,3 +1,21 @@
+AgendaDAO.java
+CursoDAO.java
+EnderecoDAO.java
+InstituicaoDAO.java
+ServicoDAO.java
+LoginServlet.java
+conexao/
+
+Agenda.java
+Curso.java
+Endereco.java
+Instituicao.java
+Servico.java
+
+paciente.js
+login.html 
+editar_paciente.jsp 
+
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -11,6 +29,7 @@ target/
 *.iws
 *.iml
 *.ipr
+
 
 ### Eclipse ###
 .apt_generated
