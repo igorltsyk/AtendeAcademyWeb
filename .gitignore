@@ -11,6 +11,7 @@ Curso.java
 Endereco.java
 Instituicao.java
 Servico.java
+FabricaConexao.java
 
 paciente.js
 login.html 

@@ -10,15 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01d87584-88ef-4605-ad8f-691f62610e44" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CadastroServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PacienteServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/AlunoDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/PacienteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/PacienteDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Aluno.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Paciente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/cadastro.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/html/cadastro.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/html/crud.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/html/crud.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,7 +235,7 @@
       <workItem from="1790135424357" duration="224000" />
       <workItem from="1790135955668" duration="51000" />
       <workItem from="1790138639800" duration="2817000" />
-      <workItem from="1790179353987" duration="413000" />
+      <workItem from="1790179353987" duration="791000" />
     </task>
     <servers />
   </component>
