@@ -1,10 +1,11 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/crud.css">
-    <title>Gestão de Pacientes - AtendeAcademy</title>
+    <title>GestÃ£o de Pacientes - AtendeAcademy</title>
 </head>
 <body>
 
@@ -41,7 +42,7 @@
                 <th>CPF</th>
                 <th>Telefone</th>
                 <th>Email</th>
-                <th style="width: 180px;">Ações</th>
+                <th style="width: 180px;">AÃ§Ãµes</th>
             </tr>
             </thead>
             <tbody>

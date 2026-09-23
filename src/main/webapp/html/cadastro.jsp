@@ -1,3 +1,4 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -36,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            <input type="password" class="form-input" placeholder="Crie uma Senha (mín. 6 caracteres)" name="senha" required>
+            <input type="password" class="form-input" placeholder="Crie uma Senha (mÃ­n. 6 caracteres)" name="senha" required>
         </div>
 
         <div class="form-group">
@@ -44,7 +45,7 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label">Gênero</label>
+            <label class="form-label">GÃªnero</label>
             <div class="radio-group">
                 <input type="radio" id="genMasc" name="genero" value="Masculino">
                 <label for="genMasc">Masculino</label>

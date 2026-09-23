@@ -1,155 +1,129 @@
 package dao;
 
-import model.Paciente;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import conexao.FabricaConexao;
 
+import model.Paciente;
+import util.FabricaConexao;
 
 public class PacienteDAO {
-
-    public void inserir(Paciente paciente) {
-        String sql = "INSERT INTO paciente (nome_paciente, cpf_paciente, idade, telefone, email, senha, estado_civil, genero) VALUES (?, ?, ?, ?, ?, ?,?,?)";
-        try (Connection conn = FabricaConexao.getConexao();
-             PreparedStatement comando = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-
-            comando.setString(1, paciente.getNomepaciente());
-            comando.setString(2, paciente.getCpfpaciente());
-            comando.setInt(3, paciente.getIdade());
-            comando.setString(4, paciente.getTelefone());
-            comando.setString(5, paciente.getEmail());
-            comando.setString(6, paciente.getSenha());
-            comando.setString(7, paciente.getEstadocivil());
-            comando.setString(8, paciente.getGenero());
-
-            comando.executeUpdate();
-
-            ResultSet rs = comando.getGeneratedKeys();
-            if (rs.next()) {
-                paciente.setIdpaciente(rs.getInt(1));
+    
+    public static Connection getConexao() throws ClassNotFoundException, SQLException {
+        return FabricaConexao.getConexaoMySQL();
+    }
+    
+    public void cadastrar(Paciente paciente) throws ClassNotFoundException, SQLException {
+        Connection con = getConexao();
+        PreparedStatement comando = con.prepareStatement(
+            "insert into pacientes (nome, cpf, telefone, email, data_nascimento, genero, estado_civil, senha, maior_de_idade) values (?,?,?,?,?,?,?,?,?)"
+        );
+        comando.setString(1, paciente.getNome());
+        comando.setString(2, paciente.getCpf());
+        comando.setString(3, paciente.getTelefone());
+        comando.setString(4, paciente.getEmail());
+        comando.setTimestamp(5, paciente.getData_nascimento() != null ? Timestamp.valueOf(paciente.getData_nascimento()) : null);
+        comando.setString(6, paciente.getGenero());
+        comando.setString(7, paciente.getEstado_civil());
+        comando.setString(8, paciente.getSenha());
+        comando.setBoolean(9, paciente.isMaiorDeIdade());
+        
+        comando.execute();
+        con.close();
+    }
+    
+    public void deletar(Paciente paciente) throws ClassNotFoundException, SQLException {
+        Connection con = getConexao();
+        PreparedStatement comando = con.prepareStatement("delete from pacientes where id_pessoa = ?");
+        comando.setInt(1, paciente.getId_pessoa());
+        comando.execute();
+        con.close();
+    }
+    
+    public void atualizar(Paciente paciente) throws ClassNotFoundException, SQLException {
+        Connection con = getConexao();
+        PreparedStatement comando = con.prepareStatement(
+            "update pacientes set nome = ?, cpf = ?, telefone = ?, email = ?, data_nascimento = ?, genero = ?, estado_civil = ?, senha = ?, maior_de_idade = ? where id_pessoa = ?"
+        );
+        comando.setString(1, paciente.getNome());
+        comando.setString(2, paciente.getCpf());
+        comando.setString(3, paciente.getTelefone());
+        comando.setString(4, paciente.getEmail());
+        comando.setTimestamp(5, paciente.getData_nascimento() != null ? Timestamp.valueOf(paciente.getData_nascimento()) : null);
+        comando.setString(6, paciente.getGenero());
+        comando.setString(7, paciente.getEstado_civil());
+        comando.setString(8, paciente.getSenha());
+        comando.setBoolean(9, paciente.isMaiorDeIdade());
+        comando.setInt(10, paciente.getId_pessoa());
+        
+        comando.execute();
+        con.close();
+    }    
+    
+    public Paciente consultarById(Paciente paciente) throws ClassNotFoundException, SQLException {
+        Connection con = getConexao();
+        PreparedStatement comando = con.prepareStatement("select * from pacientes where id_pessoa = ?");
+        comando.setInt(1, paciente.getId_pessoa());
+        ResultSet rs = comando.executeQuery();
+        
+        Paciente p = null;
+        if (rs.next()) {
+            Paciente.Builder builder = new Paciente.Builder();
+            builder.comIdPessoa(rs.getInt("id_pessoa"));
+            builder.comNome(rs.getString("nome"));
+            builder.comCpf(rs.getString("cpf"));
+            builder.comTelefone(rs.getString("telefone"));
+            builder.comEmail(rs.getString("email"));
+            
+            Timestamp ts = rs.getTimestamp("data_nascimento");
+            if (ts != null) builder.comDataNascimento(ts.toLocalDateTime());
+            
+            builder.comGenero(rs.getString("genero"));
+            builder.comEstadoCivil(rs.getString("estado_civil"));
+            builder.comSenha(rs.getString("senha"));
+            if (rs.getBoolean("maior_de_idade")) {
+                builder.ehMaiorDeIdade();
             }
-
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Erro ao inserir paciente: " + e.getMessage());
-
-            throw new RuntimeException("Erro de banco de dados ao inserir paciente", e);
-        }
+            p = builder.constroi();
+        }       
+        con.close();
+        return p;
     }
-
-
-    public List<Paciente> consultarTodos() {
-        List<Paciente> lista = new ArrayList<>();
-        String sql = "SELECT * FROM paciente";
-        try (Connection conn = FabricaConexao.getConexao();
-             Statement comando = conn.createStatement();
-             ResultSet rs = comando.executeQuery(sql)) {
-
-            while (rs.next()) {
-                Paciente p = new Paciente();
-                p.setIdpaciente(rs.getInt("id_paciente"));
-                p.setNomepaciente(rs.getString("nome_paciente"));
-                p.setCpfpaciente(rs.getString("cpf_paciente"));
-                p.setIdade(rs.getInt("idade"));
-                p.setTelefone(rs.getString("telefone"));
-                p.setEmail(rs.getString("email"));
-                p.setSenha(rs.getString("senha"));
-                p.setEstadocivil(rs.getString("estado_civil"));
-                p.setGenero(rs.getString("genero"));
-                lista.add(p);
+    
+    public List<Paciente> consultarTodos() throws ClassNotFoundException, SQLException {
+        Connection con = getConexao();
+        PreparedStatement comando = con.prepareStatement("select * from pacientes");        
+        ResultSet rs = comando.executeQuery();        
+        List<Paciente> lpacientes = new ArrayList<Paciente>();
+        int cont = 0;
+        
+        while(rs.next()){
+            Paciente.Builder builder = new Paciente.Builder();
+            builder.comIdPessoa(rs.getInt("id_pessoa"));
+            builder.comNome(rs.getString("nome"));
+            builder.comCpf(rs.getString("cpf"));
+            builder.comTelefone(rs.getString("telefone"));
+            builder.comEmail(rs.getString("email"));
+            
+            Timestamp ts = rs.getTimestamp("data_nascimento");
+            if (ts != null) builder.comDataNascimento(ts.toLocalDateTime());
+            
+            builder.comGenero(rs.getString("genero"));
+            builder.comEstadoCivil(rs.getString("estado_civil"));
+            builder.comSenha(rs.getString("senha"));
+            if (rs.getBoolean("maior_de_idade")) {
+                builder.ehMaiorDeIdade();
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Erro ao consultar pacientes: " + e.getMessage());
+            
+            lpacientes.add(builder.constroi());
+            cont++;
         }
-        return lista;
-    }
-
-    public void atualizar(Paciente paciente) {
-        String sql = "UPDATE paciente SET nome_paciente=?, cpf_paciente=?, idade=?, telefone=?, email=?, senha=?, estado_civil=?, genero=? WHERE id_paciente=?";
-        try (Connection conn = FabricaConexao.getConexao();
-             PreparedStatement comando = conn.prepareStatement(sql)) {
-
-            comando.setString(1, paciente.getNomepaciente());
-            comando.setString(2, paciente.getCpfpaciente());
-            comando.setInt(3, paciente.getIdade());
-            comando.setString(4, paciente.getTelefone());
-            comando.setString(5, paciente.getEmail());
-            comando.setString(6, paciente.getSenha());
-            comando.setInt(7, paciente.getIdpaciente());
-            comando.setString(8, paciente.getEstadocivil());
-            comando.setString(9, paciente.getGenero());
-
-            comando.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Erro ao atualizar paciente: " + e.getMessage());
-        }
-    }
-
-    //public void deletar(int idpaciente) {
-    public void deletar(Paciente paciente) {
-        String sql = "DELETE FROM paciente WHERE id_paciente=?";
-        try (Connection conn = FabricaConexao.getConexao();
-             PreparedStatement comando = conn.prepareStatement(sql)) {
-
-            //comando.setInt(1, idpaciente);
-            comando.setInt(1, paciente.getIdpaciente());
-            comando.executeUpdate();
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Erro ao deletar paciente: " + e.getMessage());
-        }
-    }
-    public List<Paciente> buscar(Paciente pacienteBusca) {
-        List<Paciente> lista = new ArrayList<>();
-        String sql = "SELECT * FROM paciente WHERE nome_paciente LIKE ? OR cpf_paciente LIKE ?";
-
-        try (Connection conn = FabricaConexao.getConexao();
-             PreparedStatement comando = conn.prepareStatement(sql)) {
-
-            String termoLike = "%" + pacienteBusca.getNomepaciente() + "%";
-            comando.setString(1, termoLike);
-            comando.setString(2, termoLike);
-
-            ResultSet rs = comando.executeQuery();
-
-            while (rs.next()) {
-                Paciente p = new Paciente();
-                p.setIdpaciente(rs.getInt("id_paciente"));
-                p.setNomepaciente(rs.getString("nome_paciente"));
-                p.setCpfpaciente(rs.getString("cpf_paciente"));
-                p.setIdade(rs.getInt("idade"));
-                p.setTelefone(rs.getString("telefone"));
-                p.setEmail(rs.getString("email"));
-                p.setSenha(rs.getString("senha"));
-                lista.add(p);
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Erro ao buscar pacientes: " + e.getMessage());
-        }
-        return lista;
-    }
-
-    public Paciente consultarPorId(Paciente paciente) {
-        String sql = "SELECT * FROM paciente WHERE id_paciente = ?";
-        try (Connection conn = FabricaConexao.getConexao();
-             PreparedStatement comando = conn.prepareStatement(sql)) {
-
-            comando.setInt(1, paciente.getIdpaciente());
-            ResultSet rs = comando.executeQuery();
-            if (rs.next()) {
-                paciente.setIdpaciente(rs.getInt("id_paciente"));
-                paciente.setNomepaciente(rs.getString("nome_paciente"));
-                paciente.setCpfpaciente(rs.getString("cpf_paciente"));
-                paciente.setIdade(rs.getInt("idade"));
-                paciente.setTelefone(rs.getString("telefone"));
-                paciente.setEmail(rs.getString("email"));
-                paciente.setSenha(rs.getString("senha"));
-                paciente.setEstadocivil(rs.getString("estado_civil"));
-                paciente.setGenero(rs.getString("genero"));
-                return paciente;
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Erro ao consultar paciente: " + e.getMessage());
-        }
-        return null;
-    }
+        System.out.println("Cont..: " + cont);
+        con.close();
+        return lpacientes;
+    }    
 }
