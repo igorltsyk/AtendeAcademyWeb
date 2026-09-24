@@ -15,7 +15,7 @@ body {
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    padding: 2.5rem; /* 40px */
+    padding: 2.5rem; 
     width: 100%;
     max-width: 1000px;
     box-sizing: border-box;
@@ -25,10 +25,10 @@ body {
 
 .dashboard-title {
     color: #4A4AFF;
-    font-size: 1.75rem; /* 28px */
+    font-size: 1.75rem; 
     font-weight: 700;
     margin-top: 0;
-    margin-bottom: 2rem; /* 32px */
+    margin-bottom: 2rem; 
     line-height: 1.3;
     text-align: left;
 }
@@ -87,7 +87,7 @@ body {
 
 
 
-/* Barra de Ferramentas (Busca e Botão Novo) */
+
 .toolbar {
     display: flex;
     justify-content: space-between;
@@ -108,20 +108,20 @@ body {
     flex-grow: 1;
 }
 
-/* Container da Tabela (para rolagem horizontal se necessário) */
+
 .table-container {
     overflow-x: auto;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse; /* Tira espaço entre células */
+    border-collapse: collapse; 
     margin-top: 1rem;
 }
 
 th, td {
     padding: 0.9rem 1rem;
-    border-bottom: 1px solid #e5e7eb; /* Linha fina separando */
+    border-bottom: 1px solid #e5e7eb; 
     text-align: left;
     vertical-align: middle;
     font-size: 0.95rem;
@@ -137,7 +137,7 @@ tbody tr:hover {
     background-color: #f9fafb;
 }
 
-/* Botões de Ação na Tabela */
+
 .action-buttons {
     display: flex;
     gap: 0.5rem;
@@ -153,7 +153,7 @@ tbody tr:hover {
     transition: all 0.2s ease-in-out;
 }
 
-/* Botão de Excluir (Vermelho) */
+
 .btn-delete {
     background-color: #fbebee;
     border-color: #ef4444;

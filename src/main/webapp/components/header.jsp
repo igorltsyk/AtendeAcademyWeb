@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AtendeAcademy - Clínica Odontológica</title>
-    <!-- O caminho da rota depende de onde o JSP é chamado, no Tomcat geralmente é a partir do contexto raiz -->
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
@@ -21,12 +21,12 @@
         <ul>
             <li><a href="${pageContext.request.contextPath}/index.jsp">Início</a></li>
             <li><a href="${pageContext.request.contextPath}/controller.do?acao=ListarConsulta">Consultas</a></li>
-            <li><a href="#">Pacientes</a></li>
-            <li><a href="#">Profissionais</a></li>
+            <li><a href="${pageContext.request.contextPath}/html/crud.jsp">Pacientes</a></li>
+            <li><a href="${pageContext.request.contextPath}/html/crud_profissional.jsp">Profissionais</a></li>
         </ul>
     </nav>
     <a href="${pageContext.request.contextPath}/controller.do?acao=CadastrarConsulta" class="btn">Nova Consulta</a>
 </header>
 
-<!-- Início do conteúdo principal que será fechado no footer -->
+
 <main>

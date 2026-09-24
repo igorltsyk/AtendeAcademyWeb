@@ -13,34 +13,54 @@ public class Consulta {
     private String status;
     private String observacoes;
 
-    private Consulta(Builder builder) {
-        this.id_consulta = builder.id_consulta;
-        this.paciente = builder.paciente;
-        this.profissional = builder.profissional;
-        this.servicos = builder.servicos;
-        this.data_hora = builder.data_hora;
-        this.status = builder.status;
-        this.observacoes = builder.observacoes;
+    public Consulta(int id_consulta, Paciente paciente, Profissional profissional, List<Servico> servicos, LocalDateTime data_hora, String status, String observacoes) {
+        this.id_consulta = id_consulta;
+        this.paciente = paciente;
+        this.profissional = profissional;
+        this.servicos = servicos;
+        this.data_hora = data_hora;
+        this.status = status;
+        this.observacoes = observacoes;
     }
 
-    public int getId_consulta() { return id_consulta; }
-    public Paciente getPaciente() { return paciente; }
-    public Profissional getProfissional() { return profissional; }
-    public List<Servico> getServicos() { return servicos; }
-    public LocalDateTime getData_hora() { return data_hora; }
-    public String getStatus() { return status; }
-    public String getObservacoes() { return observacoes; }
+    public int getId_consulta() {
+        return id_consulta;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public Profissional getProfissional() {
+        return profissional;
+    }
+
+    public List<Servico> getServicos() {
+        return servicos;
+    }
+
+    public LocalDateTime getData_hora() {
+        return data_hora;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
 
 
     public double agendarConsulta() {
         double valorTotal = calcularValorTotal();
-        
+
         if (this.profissional != null) {
             this.profissional.setStatusDisponibilidade(false);
         }
-        
+
         this.status = "AGENDADA";
-        
+
         return valorTotal;
     }
 
@@ -49,7 +69,7 @@ public class Consulta {
         if (this.servicos == null || this.servicos.isEmpty()) {
             return 0.0;
         }
-        
+
         double total = 0.0;
         for (Servico servico : this.servicos) {
             total += servico.getValor_servico();
@@ -57,7 +77,7 @@ public class Consulta {
         return total;
     }
 
-    public static class Builder {
+    public static class ConsultaBuilder {
         private int id_consulta;
         private Paciente paciente;
         private Profissional profissional;
@@ -95,7 +115,7 @@ public class Consulta {
         }
 
         public Consulta constroi() {
-            return new Consulta(this);
+            return new Consulta(id_consulta, paciente, profissional, servicos, data_hora, status, observacoes);
         }
     }
 }

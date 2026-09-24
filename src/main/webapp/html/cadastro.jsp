@@ -1,5 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,7 +18,8 @@
 <div class="auth-card">
     <h1 class="auth-title">Registrar-se no<br>AtendeAcademy</h1>
 
-    <form action="${pageContext.request.contextPath}/cadastro" method="post">
+    <form action="${pageContext.request.contextPath}/controller.do" method="post">
+        <input type="hidden" name="acao" value="CadastrarPaciente">
         <div class="form-group">
             <input type="text" class="form-input" placeholder="Nome Completo" name="nome" required>
         </div>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            <input type="password" class="form-input" placeholder="Crie uma Senha (mÃ­n. 6 caracteres)" name="senha" required>
+            <input type="password" class="form-input" placeholder="Crie uma Senha (mín. 6 caracteres)" name="senha" required>
         </div>
 
         <div class="form-group">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label">GÃªnero</label>
+            <label class="form-label">Gênero</label>
             <div class="radio-group">
                 <input type="radio" id="genMasc" name="genero" value="Masculino">
                 <label for="genMasc">Masculino</label>
@@ -74,6 +74,10 @@
 
 
     </form>
+    
+    <div class="bottom-link">
+        <a href="${pageContext.request.contextPath}/index.jsp">Voltar para o Início</a>
+    </div>
 
 </div>
 

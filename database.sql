@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS atendeacademy;
 USE atendeacademy;
 
--- Dropando tabelas na ordem reversa das dependências para evitar erros de FK
 DROP TABLE IF EXISTS consulta_servico;
 DROP TABLE IF EXISTS consultas;
 DROP TABLE IF EXISTS servicos;

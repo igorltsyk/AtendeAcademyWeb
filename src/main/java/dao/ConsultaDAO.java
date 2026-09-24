@@ -22,7 +22,7 @@ public class ConsultaDAO {
     
     public void cadastrar(Consulta consulta) throws ClassNotFoundException, SQLException {
         Connection con = getConexao();
-        con.setAutoCommit(false); // Transação manual pois envolve múltiplas tabelas
+        con.setAutoCommit(false);
         
         try {
             PreparedStatement comando = con.prepareStatement(
@@ -38,7 +38,7 @@ public class ConsultaDAO {
             
             comando.execute();
             
-            // Pega o ID gerado da consulta para inserir os servicos na tabela associativa
+
             ResultSet rsId = comando.getGeneratedKeys();
             int idConsulta = 0;
             if (rsId.next()) {
@@ -98,13 +98,10 @@ public class ConsultaDAO {
         
         Consulta c = null;
         if (rs.next()) {
-            Consulta.Builder builder = new Consulta.Builder();
+            Consulta.ConsultaBuilder builder = new Consulta.ConsultaBuilder();
             builder.comIdConsulta(rs.getInt("id_consulta"));
             
-            // Aqui uma implementação real buscaria o Paciente e Profissional inteiros nos respectivos DAOs
-            // Estamos criando objetos "casca" apenas com os IDs por brevidade no exemplo.
-            Paciente p = new Paciente.Builder().constroi(); 
-            // set id somehow or adapt builder to accept ID alone...
+            Paciente p = new Paciente.PacienteBuilder().constroi();
             
             Timestamp ts = rs.getTimestamp("data_hora");
             if (ts != null) builder.comDataHora(ts.toLocalDateTime());
@@ -126,7 +123,7 @@ public class ConsultaDAO {
         int cont = 0;
         
         while(rs.next()){
-            Consulta.Builder builder = new Consulta.Builder();
+            Consulta.ConsultaBuilder builder = new Consulta.ConsultaBuilder();
             builder.comIdConsulta(rs.getInt("id_consulta"));
             
             Timestamp ts = rs.getTimestamp("data_hora");
@@ -142,4 +139,23 @@ public class ConsultaDAO {
         con.close();
         return lconsultas;
     }    
+    
+    public boolean existeConsultaNesseHorario(int idProfissional, java.time.LocalDateTime dataHora) throws ClassNotFoundException, SQLException {
+        Connection con = getConexao();
+        PreparedStatement comando = con.prepareStatement(
+            "select count(*) from consultas where id_profissional = ? and data_hora = ? and status != 'Cancelada'"
+        );
+        comando.setInt(1, idProfissional);
+        comando.setTimestamp(2, java.sql.Timestamp.valueOf(dataHora));
+        ResultSet rs = comando.executeQuery();
+        
+        boolean existe = false;
+        if (rs.next()) {
+            if (rs.getInt(1) > 0) {
+                existe = true;
+            }
+        }
+        con.close();
+        return existe;
+    }
 }

@@ -8,11 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * Servlet Controller Central (Front Controller).
- * Mapeada para /controller.do, intercepta as requisições e utiliza
- * o padrão Factory Method com Reflection para instanciar as ações.
- */
+
 @WebServlet("/controller.do")
 public class ServletController extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -20,16 +16,16 @@ public class ServletController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         try {
-            // recupera a ação do usuário
+
             String paramAction = request.getParameter("acao");
-            // monta o nome completo e qualificado da classe
+
             String nomeDaClasse = "controller." + paramAction + "Action";
-            // cria uma classe de representação (meta-programação)
+
             Class classeAction = Class.forName(nomeDaClasse);
-            // instancia a classe utilizando a Factory do objeto Class
+
             @SuppressWarnings("deprecation")
             ICommand commandAction = (ICommand) classeAction.newInstance();
-            // executa a Action
+
             String pageDispatcher = commandAction.executar(request, response);
             RequestDispatcher rd = request.getRequestDispatcher(pageDispatcher);
             rd.forward(request, response);

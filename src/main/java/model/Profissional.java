@@ -7,12 +7,12 @@ public class Profissional extends Pessoa {
     private String senha;
     private boolean statusDisponibilidade;
 
-    private Profissional(Builder builder) {
-        super(builder);
-        this.especialidade = builder.especialidade;
-        this.crm = builder.crm;
-        this.senha = builder.senha;
-        this.statusDisponibilidade = builder.statusDisponibilidade;
+    public Profissional(int id_pessoa, String nome, String cpf, String telefone, String email, java.time.LocalDateTime data_nascimento, String genero, String estado_civil, String especialidade, String crm, String senha, boolean statusDisponibilidade) {
+        super(id_pessoa, nome, cpf, telefone, email, data_nascimento, genero, estado_civil);
+        this.especialidade = especialidade;
+        this.crm = crm;
+        this.senha = senha;
+        this.statusDisponibilidade = statusDisponibilidade;
     }
 
     public String getEspecialidade() { return especialidade; }
@@ -20,12 +20,12 @@ public class Profissional extends Pessoa {
     public String getSenha() { return senha; }
     public boolean isStatusDisponibilidade() { return statusDisponibilidade; }
     
-    // Método para permitir a alteração pela Automação de Processo de Negócio
+
     public void setStatusDisponibilidade(boolean statusDisponibilidade) {
         this.statusDisponibilidade = statusDisponibilidade;
     }
 
-    public static class Builder extends Pessoa.Builder {
+    public static class ProfissionalBuilder extends Pessoa.PessoaBuilder {
         private String especialidade;
         private String crm;
         private String senha;
@@ -49,7 +49,7 @@ public class Profissional extends Pessoa {
 
         @Override
         public Profissional constroi() {
-            return new Profissional(this);
+            return new Profissional(id_pessoa, nome, cpf, telefone, email, data_nascimento, genero, estado_civil, especialidade, crm, senha, statusDisponibilidade);
         }
     }
 }

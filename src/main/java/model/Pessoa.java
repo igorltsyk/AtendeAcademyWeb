@@ -13,15 +13,15 @@ public abstract class Pessoa {
     private String genero;
     private String estado_civil;
 
-    protected Pessoa(Builder builder) {
-        this.id_pessoa = builder.id_pessoa;
-        this.nome = builder.nome;
-        this.cpf = builder.cpf;
-        this.telefone = builder.telefone;
-        this.email = builder.email;
-        this.data_nascimento = builder.data_nascimento;
-        this.genero = builder.genero;
-        this.estado_civil = builder.estado_civil;
+    protected Pessoa(int id_pessoa, String nome, String cpf, String telefone, String email, LocalDateTime data_nascimento, String genero, String estado_civil) {
+        this.id_pessoa = id_pessoa;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
+        this.data_nascimento = data_nascimento;
+        this.genero = genero;
+        this.estado_civil = estado_civil;
     }
 
     public int getId_pessoa() { return id_pessoa; }
@@ -33,7 +33,7 @@ public abstract class Pessoa {
     public String getGenero() { return genero; }
     public String getEstado_civil() { return estado_civil; }
 
-    public static abstract class Builder {
+    public static abstract class PessoaBuilder {
         protected int id_pessoa;
         protected String nome;
         protected String cpf;

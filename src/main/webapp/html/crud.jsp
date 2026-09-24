@@ -1,78 +1,85 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/crud.css">
-    <title>GestÃ£o de Pacientes - AtendeAcademy</title>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+        <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+            <!DOCTYPE html>
+            <html lang="pt-BR">
 
-<div class="dashboard-card">
-    <h1 class="dashboard-title">Gerenciamento de Pacientes</h1>
+            <head>
+                <link rel="stylesheet" href="${pageContext.request.contextPath}/css/crud.css">
+                <title>Gestão de Pacientes - AtendeAcademy</title>
+            </head>
 
-    <div class="toolbar">
+            <body>
 
-        <form class="search-group" action="${pageContext.request.contextPath}/pacienteServlet" method="GET">
-            <input type="hidden" name="action" value="buscar">
-            <input type="text"
-                   class="form-input"
-                   name="termoBusca"
-                   placeholder="Buscar paciente por nome ou CPF..."
-                   value="${param.termoBusca}">
-            <button type="submit" class="btn btn-blue">Buscar</button>
-        </form>
+                <div class="dashboard-card">
+                    <h1 class="dashboard-title">Gerenciamento de Pacientes</h1>
 
-        <a href="${pageContext.request.contextPath}/pacienteServlet?action=listarTodos"
-           class="btn btn-blue"
-           style="background-color: #6c757d; border-color: #6c757d; text-decoration: none;">
-            Listar Todos
-        </a>
+                    <div class="toolbar">
 
-        <a href="${pageContext.request.contextPath}/cadastro" class="btn btn-green">Cadastrar Novo Paciente</a>
-    </div>
-
-    <div class="table-container">
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Telefone</th>
-                <th>Email</th>
-                <th style="width: 180px;">AÃ§Ãµes</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="paciente" items="${listaDePacientes}">
-                <tr>
-                    <td>${paciente.idpaciente}</td>
-                    <td>${paciente.nomepaciente}</td>
-                    <td>${paciente.cpfpaciente}</td>
-                    <td>${paciente.telefone}</td>
-                    <td>${paciente.email}</td>
-
-                    <td class="action-buttons">
-                        <form action="${pageContext.request.contextPath}/pacienteServlet" method="POST" style="display:inline;"
-                              onsubmit="return confirm('Tem certeza que deseja excluir este paciente?');">
-                            <input type="hidden" name="action" value="excluir">
-                            <input type="hidden" name="id" value="${paciente.idpaciente}">
-                            <button type="submit" class="btn-action btn-delete">Excluir</button>
+                        <form class="search-group" action="${pageContext.request.contextPath}/controller.do"
+                            method="GET">
+                            <input type="hidden" name="acao" value="BuscarPaciente">
+                            <input type="text" class="form-input" name="termoBusca"
+                                placeholder="Buscar paciente por nome ou CPF..." value="${param.termoBusca}">
+                            <button type="submit" class="btn btn-blue">Buscar</button>
                         </form>
 
-                        <form action="${pageContext.request.contextPath}/pacienteServlet" method="GET" style="display:inline;">
-                            <input type="hidden" name="action" value="carregarParaEditar">
-                            <input type="hidden" name="id" value="${paciente.idpaciente}">
-                            <button type="submit" class="btn-action btn-edit" style="background-color: #007bff; color: white; border: 1px solid #007bff;">Editar</button>
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </div>
-</div>
-</body>
-</html>
+                        <a href="${pageContext.request.contextPath}/controller.do?acao=ListarPaciente"
+                            class="btn btn-blue"
+                            style="background-color: #6c757d; border-color: #6c757d; text-decoration: none;">
+                            Listar Todos
+                        </a>
+
+                        <a href="${pageContext.request.contextPath}/html/cadastro.jsp" class="btn btn-green">Cadastrar Novo
+                            Paciente</a>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Telefone</th>
+                                    <th>Email</th>
+                                    <th style="width: 180px;">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="paciente" items="${listaDePacientes}">
+                                    <tr>
+                                        <td>${paciente.id_pessoa}</td>
+                                        <td>${paciente.nome}</td>
+                                        <td>${paciente.cpf}</td>
+                                        <td>${paciente.telefone}</td>
+                                        <td>${paciente.email}</td>
+
+                                        <td class="action-buttons">
+                                            <form action="${pageContext.request.contextPath}/controller.do"
+                                                method="POST" style="display:inline;"
+                                                onsubmit="return confirm('Tem certeza que deseja excluir este paciente?');">
+                                                <input type="hidden" name="acao" value="ExcluirPaciente">
+                                                <input type="hidden" name="id" value="${paciente.id_pessoa}">
+                                                <button type="submit" class="btn-action btn-delete">Excluir</button>
+                                            </form>
+
+                                            <form action="${pageContext.request.contextPath}/controller.do"
+                                                method="GET" style="display:inline;">
+                                                <input type="hidden" name="acao" value="CarregarPaciente">
+                                                <input type="hidden" name="id" value="${paciente.id_pessoa}">
+                                                <button type="submit" class="btn-action btn-edit"
+                                                    style="background-color: #007bff; color: white; border: 1px solid #007bff;">Editar</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="text-align: center; margin-top: 1.5rem; font-size: 0.95rem;">
+                        <a href="${pageContext.request.contextPath}/index.jsp" style="color: #4A4AFF; font-weight: 600; text-decoration: none;">Voltar para o Início</a>
+                    </div>
+                </div>
+            </body>
+
+            </html>

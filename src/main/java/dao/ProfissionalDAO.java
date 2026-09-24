@@ -76,7 +76,7 @@ public class ProfissionalDAO {
         
         Profissional p = null;
         if (rs.next()) {
-            Profissional.Builder builder = new Profissional.Builder();
+            Profissional.ProfissionalBuilder builder = new Profissional.ProfissionalBuilder();
             builder.comIdPessoa(rs.getInt("id_pessoa"));
             builder.comNome(rs.getString("nome"));
             builder.comCpf(rs.getString("cpf"));
@@ -107,7 +107,7 @@ public class ProfissionalDAO {
         int cont = 0;
         
         while(rs.next()){
-            Profissional.Builder builder = new Profissional.Builder();
+            Profissional.ProfissionalBuilder builder = new Profissional.ProfissionalBuilder();
             builder.comIdPessoa(rs.getInt("id_pessoa"));
             builder.comNome(rs.getString("nome"));
             builder.comCpf(rs.getString("cpf"));

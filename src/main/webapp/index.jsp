@@ -1,29 +1,39 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<jsp:include page="components/header.jsp" />
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início - AtendeAcademy</title>
 
-<div class="glass-panel text-center mt-2">
-    <h1>Bem-vindo ao AtendeAcademy</h1>
-    <p class="subtitle">O sistema de gestÃ£o odontolÃ³gica moderno da sua faculdade.</p>
-    
-    <div style="display: flex; gap: 2rem; justify-content: center; margin-top: 2rem;">
-        <div class="glass-panel" style="flex: 1; padding: 2rem; text-align: left;">
-            <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">Pacientes</h3>
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">Gerencie o cadastro de pacientes, prontuÃ¡rios e histÃ³ricos mÃ©dicos.</p>
-            <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver Pacientes</a>
-        </div>
-        
-        <div class="glass-panel" style="flex: 1; padding: 2rem; text-align: left; background: rgba(0, 188, 212, 0.05); border-color: rgba(0, 188, 212, 0.2);">
-            <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">Agendamentos</h3>
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">Controle a agenda dos profissionais e marque novas consultas rapidamente.</p>
-            <a href="${pageContext.request.contextPath}/controller.do?acao=ListarConsulta" class="btn" style="width: 100%; text-align: center;">Acessar Agenda</a>
-        </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-        <div class="glass-panel" style="flex: 1; padding: 2rem; text-align: left;">
-            <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">Profissionais</h3>
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">Cadastre dentistas, controle a disponibilidade e especialidades (CRMs).</p>
-            <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver Profissionais</a>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cadastro.css">
+</head>
+<body>
+
+    <div class="auth-card" style="max-width: 500px;">
+        <h1 class="auth-title">Bem-vindo ao<br>AtendeAcademy</h1>
+        <p style="text-align: center; color: #6b7280; margin-bottom: 2rem;"></p>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+            
+            <a href="${pageContext.request.contextPath}/html/crud.jsp" class="btn btn-green" style="background-color: #4A4AFF; border-color: #4A4AFF;">
+                Gerenciar Pacientes
+            </a>
+
+            <a href="${pageContext.request.contextPath}/html/crud_profissional.jsp" class="btn btn-green" style="background-color: #4A4AFF; border-color: #4A4AFF;">
+                Gerenciar Profissionais
+            </a>
+
+            <a href="${pageContext.request.contextPath}/controller.do?acao=ListarConsulta" class="btn btn-green">
+                Acessar Agenda de Consultas
+            </a>
+            
         </div>
     </div>
-</div>
 
-<jsp:include page="components/footer.jsp" />
+</body>
+</html>

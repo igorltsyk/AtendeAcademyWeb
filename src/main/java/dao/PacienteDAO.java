@@ -72,7 +72,7 @@ public class PacienteDAO {
         
         Paciente p = null;
         if (rs.next()) {
-            Paciente.Builder builder = new Paciente.Builder();
+            Paciente.PacienteBuilder builder = new Paciente.PacienteBuilder();
             builder.comIdPessoa(rs.getInt("id_pessoa"));
             builder.comNome(rs.getString("nome"));
             builder.comCpf(rs.getString("cpf"));
@@ -102,7 +102,7 @@ public class PacienteDAO {
         int cont = 0;
         
         while(rs.next()){
-            Paciente.Builder builder = new Paciente.Builder();
+            Paciente.PacienteBuilder builder = new Paciente.PacienteBuilder();
             builder.comIdPessoa(rs.getInt("id_pessoa"));
             builder.comNome(rs.getString("nome"));
             builder.comCpf(rs.getString("cpf"));

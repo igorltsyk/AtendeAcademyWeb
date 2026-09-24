@@ -4,16 +4,16 @@ public class Paciente extends Pessoa {
     private String senha;
     private boolean maiorDeIdade;
 
-    private Paciente(Builder builder) {
-        super(builder);
-        this.senha = builder.senha;
-        this.maiorDeIdade = builder.maiorDeIdade;
+    public Paciente(int id_pessoa, String nome, String cpf, String telefone, String email, java.time.LocalDateTime data_nascimento, String genero, String estado_civil, String senha, boolean maiorDeIdade) {
+        super(id_pessoa, nome, cpf, telefone, email, data_nascimento, genero, estado_civil);
+        this.senha = senha;
+        this.maiorDeIdade = maiorDeIdade;
     }
 
     public String getSenha() { return senha; }
     public boolean isMaiorDeIdade() { return maiorDeIdade; }
 
-    public static class Builder extends Pessoa.Builder {
+    public static class PacienteBuilder extends Pessoa.PessoaBuilder {
         private String senha;
         private boolean maiorDeIdade;
 
@@ -27,7 +27,7 @@ public class Paciente extends Pessoa {
 
         @Override
         public Paciente constroi() {
-            return new Paciente(this);
+            return new Paciente(id_pessoa, nome, cpf, telefone, email, data_nascimento, genero, estado_civil, senha, maiorDeIdade);
         }
     }
 }
