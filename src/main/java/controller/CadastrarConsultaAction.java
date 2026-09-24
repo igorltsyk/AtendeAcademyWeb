@@ -68,7 +68,7 @@ public class CadastrarConsultaAction implements ICommand {
 
             dao.ConsultaDAO dao = new dao.ConsultaDAO();
             
-            if (dao.existeConsultaNesseHorario(idProfissional, dataHora)) {
+            if (dao.existeConsultaNesseHorario(consulta)) {
                 dao.PacienteDAO pDao = new dao.PacienteDAO();
                 dao.ProfissionalDAO profDao = new dao.ProfissionalDAO();
                 dao.ServicoDAO sDao = new dao.ServicoDAO();

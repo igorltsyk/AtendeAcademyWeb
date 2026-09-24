@@ -9,7 +9,7 @@ public class CarregarProfissionalAction implements ICommand {
     public String executar(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int id = Integer.parseInt(request.getParameter("id"));
         dao.ProfissionalDAO dao = new dao.ProfissionalDAO();
-        Profissional.ProfissionalBuilder b = new Profissional.ProfissionalBuilder();
+        model.Profissional.ProfissionalBuilder b = new model.Profissional.ProfissionalBuilder();
         b.comIdPessoa(id);
         model.Profissional p = b.constroi();
         model.Profissional profissional = dao.consultarById(p);

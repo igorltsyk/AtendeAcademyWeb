@@ -140,13 +140,14 @@ public class ConsultaDAO {
         return lconsultas;
     }    
     
-    public boolean existeConsultaNesseHorario(int idProfissional, java.time.LocalDateTime dataHora) throws ClassNotFoundException, SQLException {
+    public boolean existeConsultaNesseHorario(Consulta consulta) throws ClassNotFoundException, SQLException {
         Connection con = getConexao();
         PreparedStatement comando = con.prepareStatement(
             "select count(*) from consultas where id_profissional = ? and data_hora = ? and status != 'Cancelada'"
         );
-        comando.setInt(1, idProfissional);
-        comando.setTimestamp(2, java.sql.Timestamp.valueOf(dataHora));
+
+        comando.setInt(1, consulta.getProfissional().getId_pessoa());
+        comando.setTimestamp(2, java.sql.Timestamp.valueOf(consulta.getData_hora()));
         ResultSet rs = comando.executeQuery();
         
         boolean existe = false;

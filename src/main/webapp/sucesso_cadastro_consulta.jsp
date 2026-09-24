@@ -17,7 +17,7 @@
         <div style="display: flex; gap: 1rem; justify-content: center;">
             <a href="${pageContext.request.contextPath}/controller.do?acao=ListarConsulta" class="btn">Ver Agenda
                 Completa</a>
-            <a href="${pageContext.request.contextPath}/index.jsp" class="btn btn-outline">Voltar ao InÃ­cio</a>
+            <a href="${pageContext.request.contextPath}/index.jsp" class="btn btn-outline">Voltar ao Inicio</a>
         </div>
     </div>
 
