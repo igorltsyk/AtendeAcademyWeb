@@ -32,6 +32,41 @@ O codigo foi organizado seguindo boas praticas de Orientacao a Objetos:
 * **`controller`**: Utiliza o padrao Command (`ICommand`) para gerenciar as acoes atraves de um Front Controller (Servlet central).
 * **`view` (`webapp`)**: Paginas `.jsp` e arquivos de estilo `.css`.
 
+## Estrutura de Pastas
+
+```text 
+AtendeAcademyWeb
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   ├── conexao
+│   │   │   │   └── FabricaConexao.java
+│   │   │   ├── controller
+│   │   │   │   ├── ICommand.java
+│   │   │   │   ├── ServletController.java
+│   │   │   │   ├── CadastrarPacienteAction.java
+│   │   │   │   └── ... (outras actions)
+│   │   │   ├── dao
+│   │   │   │   ├── PacienteDAO.java
+│   │   │   │   ├── ProfissionalDAO.java
+│   │   │   │   └── ConsultaDAO.java
+│   │   │   └── model
+│   │   │       ├── Paciente.java
+│   │   │       ├── Profissional.java
+│   │   │       ├── Consulta.java
+│   │   │       └── ...
+│   │   └── webapp
+│   │       ├── css
+│   │       │   └── ...
+│   │       ├── html
+│   │       │   ├── cadastro.jsp
+│   │       │   ├── crud.jsp
+│   │       │   └── ...
+│   │       ├── WEB-INF
+│   │       │   └── web.xml
+│   │       └── index.jsp
+└── pom.xml
+```
 ## Pre-requisitos
 
 Para rodar este projeto, voce precisara de:
