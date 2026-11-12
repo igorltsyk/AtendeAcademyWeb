@@ -50,10 +50,27 @@ public class CadastrarConsultaAction implements ICommand {
             model.Profissional profissional = profBuilder.constroi();
             
 
-            model.Servico.ServicoBuilder sBuilder = new model.Servico.ServicoBuilder();
-            sBuilder.comIdServico(idServico);
+            dao.ServicoDAO servicoDao = new dao.ServicoDAO();
+            model.Servico servicoBase = buscarServico(servicoDao, criarReferencia(idServico));
+
+            java.util.List<model.Servico> adicionais = new java.util.ArrayList<>();
+            String[] idsAdicionais = request.getParameterValues("idsAdicionais");
+            if (idsAdicionais != null) {
+                for (String idAd : idsAdicionais) {
+                    model.Servico adicional = buscarServico(servicoDao, criarReferencia(Integer.parseInt(idAd)));
+                    if (adicional.getId_servico() != servicoBase.getId_servico()) {
+                        adicionais.add(adicional);
+                    }
+                }
+            }
+
+            // Decorator: calcula descricao e preco acumulados com valores vindos do banco
+            model.decorator.Consulta consultaDecorada = new model.decorator.ConsultaFactory().criar(servicoBase, adicionais);
+
+            // Servicos persistidos na consulta: base + adicionais
             java.util.List<model.Servico> servicos = new java.util.ArrayList<>();
-            servicos.add(sBuilder.constroi());
+            servicos.add(servicoBase);
+            servicos.addAll(adicionais);
             
 
             model.Consulta.ConsultaBuilder cBuilder = new model.Consulta.ConsultaBuilder();
@@ -81,6 +98,9 @@ public class CadastrarConsultaAction implements ICommand {
             }
             
             dao.cadastrar(consulta);
+
+            request.setAttribute("descricaoConsulta", consultaDecorada.getDescricao());
+            request.setAttribute("valorConsulta", consultaDecorada.getPreco());
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,5 +108,21 @@ public class CadastrarConsultaAction implements ICommand {
         }
 
         return "sucesso_cadastro_consulta.jsp";
+    }
+
+    /** Converte o parametro do formulario em um objeto Servico (somente identificacao). */
+    private model.Servico criarReferencia(int idServico) {
+        model.Servico.ServicoBuilder b = new model.Servico.ServicoBuilder();
+        b.comIdServico(idServico);
+        return b.constroi();
+    }
+
+    /** Recebe um Servico de referencia e devolve o Servico completo carregado do banco. */
+    private model.Servico buscarServico(dao.ServicoDAO servicoDao, model.Servico referencia) throws Exception {
+        model.Servico s = servicoDao.consultarById(referencia);
+        if (s == null) {
+            throw new Exception("Serviço não encontrado: " + referencia.getId_servico());
+        }
+        return s;
     }
 }

@@ -14,6 +14,13 @@
         <p class="subtitle mt-2" style="margin-bottom: 3rem;">O agendamento foi registrado com sucesso no sistema e a
             sala foi reservada.</p>
 
+        <% String descricaoConsulta = (String) request.getAttribute("descricaoConsulta");
+           Double valorConsulta = (Double) request.getAttribute("valorConsulta");
+           if (descricaoConsulta != null && valorConsulta != null) { %>
+        <p style="margin-bottom: 3rem;"><strong><%= descricaoConsulta %></strong><br>
+            Valor total: R$ <%= String.format("%.2f", valorConsulta) %></p>
+        <% } %>
+
         <div style="display: flex; gap: 1rem; justify-content: center;">
             <a href="${pageContext.request.contextPath}/controller.do?acao=ListarConsulta" class="btn">Ver Agenda
                 Completa</a>

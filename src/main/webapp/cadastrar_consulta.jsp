@@ -98,6 +98,19 @@
                         </div>
 
                         <div class="form-group" style="margin-bottom: 0;">
+                            <label style="display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.9rem;">Procedimentos adicionais</label>
+                            <% if (servicos != null) {
+                                for (model.Servico s : servicos) {
+                                    String nomeAd = s.getNome_servico() == null ? "" : s.getNome_servico().toLowerCase();
+                                    if (nomeAd.contains("anestesia") || nomeAd.contains("radiografia") || nomeAd.contains("limpeza")) { %>
+                                <label style="display: block; font-size: 0.9rem;">
+                                    <input type="checkbox" name="idsAdicionais" value="<%= s.getId_servico() %>">
+                                    <%= s.getNome_servico() %> (+ R$ <%= s.getValor_servico() %>)
+                                </label>
+                            <% } } } %>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0;">
                             <label for="observacoes"
                                 style="display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.9rem;">Observações</label>
                             <textarea id="observacoes" name="observacoes" rows="3" class="form-input"
